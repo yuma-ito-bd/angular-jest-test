@@ -7,7 +7,7 @@ import { HEROES } from './mock-heroes';
 import { MessageService } from './message.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HeroService {
 
