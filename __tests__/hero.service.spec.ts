@@ -1,6 +1,5 @@
 
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 import { HeroService } from 'src/app/hero.service';
 import { MessageService } from 'src/app/message.service';
 import { HEROES } from 'src/app/mock-heroes';
@@ -18,8 +17,15 @@ describe('TestHeroService', () => {
         heroService = TestBed.inject(HeroService);
     });
 
-    it('should be created', () => {
-        expect(heroService).toBeTruthy();
+    describe('テスト準備', () => {
+        it('HeroServiceがインスタンス化されていること', () => {
+            expect(heroService).toBeTruthy();
+        });
+
+        it('依存クラス（MessageService）がモック化されていること', () => {
+            const mockedMessageService = TestBed.inject(MessageService) as jest.Mocked<MessageService>;
+            expect(mockedMessageService.add.mock).toBeTruthy();
+        });
     });
 
     describe('getHeroesメソッドのテスト', () => {
@@ -40,6 +46,10 @@ describe('TestHeroService', () => {
             // 準備
             const messageService = TestBed.inject(MessageService);
             const spy = jest.spyOn(messageService, 'add');
+
+            // 以下のようにspyすることも可能
+            // const spy = jest.spyOn(MessageService.prototype, 'add');
+
 
             // 実行
             heroService.getHeroes();
