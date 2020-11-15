@@ -19,7 +19,7 @@ describe('TestHeroService', () => {
 
     describe('テスト準備', () => {
         it('HeroServiceがインスタンス化されていること', () => {
-            expect(heroService).not.toBeTruthy();
+            expect(heroService).toBeTruthy();
         });
 
         it('依存クラス（MessageService）がモック化されていること', () => {
