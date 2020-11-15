@@ -18,3 +18,4 @@ workflows:
     jobs:
       - node/test
       - slack-notify
+          context: SLACK
