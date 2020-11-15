@@ -17,5 +17,5 @@ workflows:
   node-tests:
     jobs:
       - node/test
-      - slack-notify
+      - slack-notify:
           context: SLACK
