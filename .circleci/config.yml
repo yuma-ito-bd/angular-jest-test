@@ -3,10 +3,15 @@ orbs:
   node: circleci/node@4.1.0
   slack: circleci/slack@4.1.1
 jobs:
-  slack-notify:
+  npm-test:
     executor:
       name: node/default
     steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+      # Slackへの通知
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
@@ -16,8 +21,4 @@ jobs:
 workflows:
   node-tests:
     jobs:
-      - node/test
-      - slack-notify:
-          context: SLACK
-          requires:
-            - node/test
+      - npm-test
