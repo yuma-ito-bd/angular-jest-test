@@ -21,4 +21,5 @@ jobs:
 workflows:
   node-tests:
     jobs:
-      - npm-test
+      - npm-test:
+          context: SLACK
