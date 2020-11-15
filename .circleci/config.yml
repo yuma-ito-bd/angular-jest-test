@@ -19,3 +19,5 @@ workflows:
       - node/test
       - slack-notify:
           context: SLACK
+          requires:
+            - node/test
