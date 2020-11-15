@@ -1,7 +1,14 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.1.0
+  slack: circleci/slack@4.1.1
 workflows:
   node-tests:
     jobs:
       - node/test
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
